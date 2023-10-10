@@ -1,11 +1,3 @@
-{{- define "namespace" -}}
-{{- if eq .Release.Namespace "default" -}}
-{{- "gaia" }}
-{{- else -}}
-{{- .Release.Namespace -}}
-{{- end -}}
-{{- end -}}
-
 {{/*
 Define the default application name.
 */}}
