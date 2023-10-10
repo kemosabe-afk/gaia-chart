@@ -1,0 +1,17 @@
+{{- if .Values.serviceAccount.create }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ .Values.serviceAccount.name }}-rolebinding
+  labels:
+    {{- include "gaia.labels" . | nindent 4 }}
+  annotations:
+    {{- include "annotations" . | nindent 4 }}
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.serviceAccount.name }} 
+  namespace: {{ include "namespace" . }}
+roleRef:
+  kind: Role
+  name: {{ .Values.serviceAccount.name }}-role
+{{- end }}
