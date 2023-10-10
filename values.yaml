@@ -1,0 +1,115 @@
+# Default values for gaia.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+## Parameters for gaia.
+gaia:
+
+  ## Replica count for deployment.
+  replicaCount: 1
+
+  ## Image parameters.
+  image:
+    registry: docker.io
+    repository: gaiaapp/gaia 
+    tag: v2.4.0
+    pullPolicy: IfNotPresent
+
+  ## Resources limits.
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "500m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+
+  ## Service parameters.
+  service:
+    type: LoadBalancer
+    port: 80
+    targetPort: http
+
+## Parameters for gaia runner.
+runner:
+
+  ## Replica count for deployment.
+  replicaCount: 1
+
+  ## Image parameters.
+  image:
+    registry: docker.io
+    repository: gaiaapp/runner
+    tag: v2.3.2
+    pullPolicy: IfNotPresent
+
+  ## Runner API passwordi (base64).
+  password: MTIzNA== 
+
+  ## Resources limits.
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "500m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+
+## Parameters for database.
+database:
+
+  ## Replica count for deployment.
+  replicaCount: 1
+
+  ## Image parameters.
+  image:
+    registry: docker.io
+    repository: library/mongo
+    tag: 7.0.2
+    pullPolicy: IfNotPresent
+
+  ## Resources limits.
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "500m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+
+  ## Volume parameters.
+  volume:
+    accessModes:
+    - ReadWriteOnce
+    storage: 1Gi
+    storageClassName: "" 
+    storagePath: /data/mongo-pv
+
+  ## Service parameters.
+  service:
+    type: ClusterIP
+    port: 27017
+    targetPort: 27017
+
+## Namespace name.
+namespace: gaia
+
+## ServiceAccount parameters.
+serviceAccount:
+  create: true
+  name: "gaia"
+
+## RBAC rules.
+rbac:
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    - pods/logs
+    - pods/attach
+    verbs:
+    - get
+    - list
+    - create
+    - delete
