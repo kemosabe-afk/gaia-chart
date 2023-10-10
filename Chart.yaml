@@ -1,0 +1,22 @@
+annotations:
+  category: IaC UI
+  images: |
+    - name: gaia
+      image: docker.io/gaiaapp/gaia:v2.4.0
+    - name: runner
+      image: docker.io/gaiaapp/runner:v2.3.2
+    - name: mongo
+      image: docker.io/library/mongo:7.0.2
+    - name: busybox
+      image: docker.io/library/busybox:1.36
+    - name: alpine 
+      image: docker.io/library/alpine:3.18.4
+apiVersion: v2
+appVersion: 2.4.0
+description: A Helm Chart for deploying Gaia and Gaia Runner. 
+home: https://gaia-app.io
+icon: https://raw.githubusercontent.com/gaia-app/gaia/81dfd8fbee3084ff5dec6a95d3405c9ab4ee92a7/assets/gaia_logo_with_title.png
+name: gaia 
+sources:
+- https://github.com/gaia-app/chart
+version: 0.1.1
