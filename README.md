@@ -23,7 +23,7 @@ Clone the repository:
 git clone https://github.com/kemosabe-afk/gaia-chart.git
 ```
 
-You can specify a namespace for the app using '-n <namespace>', otherwise it will be created in the default *gaia* namespace.
+You can specify a namespace for the app using `-n <namespace> --create-namespace`, otherwise it will be created in the default namespace.
 
 If you are installing multiple releases, change the `database.volume.storagePath` parameter in the *values.yaml* file to create a directory for another PV for MongoDB.
 
