@@ -1,15 +1,4 @@
 {{/*
-Define the default application name.
-*/}}
-{{- define "app.name" -}}
-{{- if eq .Release.Name "release-name" }}
-{{- "gaia" }}
-{{- else }}
-{{- .Release.Name | trunc 63 | trimSuffix "-" }}
-{{- end }}
-{{- end -}}
-
-{{/*
 Define the default application database name.
 */}}
 {{- define "db.name" -}}
