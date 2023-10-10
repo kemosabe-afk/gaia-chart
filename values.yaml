@@ -91,9 +91,6 @@ database:
     port: 27017
     targetPort: 27017
 
-## Namespace name.
-namespace: gaia
-
 ## ServiceAccount parameters.
 serviceAccount:
   create: true
