@@ -42,7 +42,6 @@ The following table lists the configurable parameters of the Gaia chart and thei
 | `gaia.replicaCount`     | Number of Gaia Deployment Replicas               | `1`          |
 | `runner.replicaCount`   | Number of Gaia Runner Deployment Replicas        | `1`          |
 | `database.replicaCount` | Number of MongoDB Deployment Replicas            | `1`          |
-| `namespace`             | The Namespace for Release Installation           | `gaia`       |
 | `serviceAccount.name`   | The Service Account Used by Gaia                 | `gaia`       |
 
 See `values.yaml` for more details.
