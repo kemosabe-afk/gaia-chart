@@ -10,7 +10,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: {{ .Values.serviceAccount.name }} 
-  namespace: {{ include "namespace" . }}
+  namespace: {{ .Release.Namespace }}
 roleRef:
   kind: Role
   name: {{ .Values.serviceAccount.name }}-role
