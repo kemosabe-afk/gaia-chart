@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "app.name" . }}-runner
+  labels:
+    {{- include "runner.labels" . | nindent 4 }}
+  annotations:
+    {{- include "annotations" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.runner.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "runner.labels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "runner.labels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+      - name: gaia
+        image: {{ include "runner.image" . }}
+        imagePullPolicy: {{ .Values.runner.image.pullPolicy }}
+        env:
+          {{- include "runner.env" . | nindent 8 }}
+        resources:
+          {{- toYaml .Values.runner.resources | nindent 10 }}
