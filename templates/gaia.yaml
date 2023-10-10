@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "app.name" . }}
+  labels:
+    {{- include "gaia.labels" . | nindent 4 }}
+  annotations:
+    {{- include "annotations" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.gaia.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "gaia.labels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "gaia.labels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      initContainers:
+      - name: wait-for-mongo
+        image: busybox:1.36
+        imagePullPolicy: IfNotPresent
+        command: ['sh', '-c', 'until nc -z -w 3 {{ include "db.name" . }}-service {{ .Values.database.service.port }}; do echo waiting for db; sleep 3; done;']
+      containers:
+      - name: gaia
+        image: {{ include "gaia.image" . }}
+        imagePullPolicy: {{ .Values.gaia.image.pullPolicy }}
+        env:
+          {{- include "gaia.env" . | nindent 8 }}
+        ports:
+        - name: http
+          protocol: TCP
+          containerPort: 8080
+        resources:
+          {{- toYaml .Values.gaia.resources | nindent 10 }}
