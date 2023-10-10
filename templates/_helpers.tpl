@@ -1,8 +1,9 @@
-{{/*
-Define the default namespace name and allow it to be overriden
-*/}}
 {{- define "namespace" -}}
-{{- default .Release.Namespace .Values.namespace -}}
+{{- if eq .Release.Namespace "default" -}}
+{{- "gaia" }}
+{{- else -}}
+{{- .Release.Namespace -}}
+{{- end -}}
 {{- end -}}
 
 {{/*
