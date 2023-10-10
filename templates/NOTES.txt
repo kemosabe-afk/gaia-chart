@@ -1,7 +1,5 @@
 Thank you for installing {{ .Chart.Name }}-{{ .Chart.Version }}!
 
-Your release is named {{ .Release.Name }} and it's deployed to namespace: {{ .Release.Namespace }}.
-
 To access the Gaia application, you can use the following default login credentials:
 - Username: admin
 - Password: admin123
