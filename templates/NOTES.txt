@@ -1,0 +1,9 @@
+Thank you for installing {{ .Chart.Name }}-{{ .Chart.Version }}!
+
+Your release is named {{ .Release.Name }} and it's deployed to namespace: {{ include "namespace" . }}.
+
+To access the Gaia application, you can use the following default login credentials:
+- Username: admin
+- Password: admin123
+
+You can find more details about Gaia and Gaia Runner in their official documentation: https://docs.gaia-app.io
